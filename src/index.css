@@ -1,0 +1,278 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@1,700&display=swap');
+
+@theme {
+  --font-bebas: "Bebas Neue", sans-serif;
+  --font-dm: "DM Sans", sans-serif;
+  --font-script: "Dancing Script", cursive;
+  --font-serif-italic: "Playfair Display", serif;
+}
+
+:root {
+  --bg: #111111;
+  --bg-card: #1a1a1a;
+  --accent: #CC2200;
+  --text-primary: #FFFFFF;
+  --text-secondary: #AAAAAA;
+  --border: rgba(255,255,255,0.08);
+  --dot-color: #2a2a2a;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-dm);
+  overflow-x: hidden;
+  cursor: none; /* Hide default cursor */
+}
+
+.dot-grid {
+  background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
+  background-size: 28px 28px;
+  position: fixed;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Custom Cursor Styles */
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-ring {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px rgba(204, 34, 0, 0.3);
+  transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s, border-radius 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cursor-ring::after {
+  content: '';
+  font-family: "DM Sans", sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.cursor-ring.hover-active {
+  width: 55px;
+  height: 55px;
+}
+
+.cursor-ring.card-hover {
+  width: 80px;
+  height: 80px;
+  background: rgba(204, 34, 0, 0.15);
+}
+
+.cursor-ring.card-hover::after {
+  content: 'VIEW';
+  opacity: 1;
+}
+
+.cursor-ring.photo-hover {
+  width: 80px;
+  height: 80px;
+  background: rgba(204, 34, 0, 0.15);
+}
+
+/* Navigation Styles */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  transition: padding 0.3s ease, background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease;
+  will-change: padding, background, backdrop-filter;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(10, 10, 10, 0.4);
+  backdrop-filter: blur(8px);
+}
+
+nav.scrolled {
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(16px);
+  padding-top: 14px !important;
+  padding-bottom: 14px !important;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-logo-container {
+  transition: transform 0.3s ease;
+}
+
+nav.scrolled .nav-logo-container {
+  transform: scale(0.9);
+}
+
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  background-color: var(--accent);
+  transform: translateX(-50%) scaleX(0);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-link.active {
+  color: white !important;
+}
+
+.nav-link.active::after {
+  transform: translateX(-50%) scaleX(1);
+  opacity: 1;
+}
+
+/* Typography Helpers */
+.text-accent {
+  color: var(--accent);
+}
+
+.font-bebas {
+  font-family: var(--font-bebas);
+}
+
+.font-script {
+  font-family: var(--font-script);
+}
+
+.font-serif-italic {
+  font-family: var(--font-serif-italic);
+  font-style: italic;
+}
+
+/* Button Styles */
+.btn-pill {
+  background-color: #2a2a2a;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+
+.btn-pill:hover {
+  background-color: #3a3a3a;
+  transform: scale(1.03);
+  border-color: var(--accent);
+}
+
+/* Project Grid Styles */
+.project-card {
+  aspect-ratio: 16/9;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.5s ease;
+}
+
+.project-card:hover {
+  border-color: rgba(204, 34, 0, 0.4);
+  box-shadow: 0 0 30px rgba(204, 34, 0, 0.12);
+}
+
+.project-thumbnail {
+  height: 75%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-thumbnail img, .project-thumbnail .placeholder-gradient {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-thumbnail img,
+.project-card:hover .project-thumbnail .placeholder-gradient {
+  transform: scale(1.04);
+}
+
+.project-info {
+  height: 25%;
+  width: 100%;
+  background: transparent;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.3s ease;
+}
+
+.project-card:hover .project-info {
+  background: #222;
+}
+
+/* Overlay Styles */
+.overlay-container {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--bg);
+  background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
+  background-size: 28px 28px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.overlay-slide {
+  width: 100%;
+  aspect-ratio: 16/9;
+  position: relative;
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  z-index: 210;
+  transition: width 0.1s ease;
+}

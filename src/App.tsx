@@ -2,14 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, useSpring, useMotionValue } from 'motion/react';
 
 export default function App() {
-  const [isHovering, setIsHovering] = useState(false);
-  const [isPhotoHovering, setIsPhotoHovering] = useState(false);
-  const [isCardHovering, setIsCardHovering] = useState(false);
   const [selectedProject, setSelectedProject] = useState<null | number>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   
   const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [cursorType, setCursorType] = useState<'default' | 'hover' | 'photo' | 'card' | 'text' | 'send' | 'social' | 'arrow'>('default');
+  const [selectedPills, setSelectedPills] = useState<string[]>([]);
+  const [isSent, setIsSent] = useState(false);
   
   // Cursor position
   const mouseX = useMotionValue(0);
@@ -28,7 +28,7 @@ export default function App() {
       title: 'LOGOFOLIO',
       category: 'Identity & Logos',
       gradient: 'linear-gradient(135deg, #1a1a1a, #2d1a1a, #3a1010)',
-      image: 'https://lh3.googleusercontent.com/d/1NZesT_qTt_LkQuDR83c2PnRW1FW3zE3X',
+      image: 'https://lh3.googleusercontent.com/d/1JPhLNJIBuMw_Mmvwba9vMBmEnWFhAw2e',
       description: 'A collection of visual identities crafted with precision and purpose. Each logo represents a unique story, distilled into its most essential form. From minimalist marks to complex brand symbols, this folio explores the intersection of geometry and meaning.',
       gallery: ['https://lh3.googleusercontent.com/d/14rKNtuO_S9uBl7YI5rxM6ojcGGkfbqk1']
     },
@@ -37,25 +37,50 @@ export default function App() {
       title: 'BRANDING',
       category: 'Brand Systems',
       gradient: 'linear-gradient(135deg, #1a1a1a, #1a1a2d, #10102a)',
-      image: 'https://lh3.googleusercontent.com/d/1q1DMMwQlZl8mDKd2cjQ-jaDb2SVkCL8y',
+      image: 'https://lh3.googleusercontent.com/d/16LSdIUSdoxqkqaS932ETpW1zTFqEXZnJ',
       description: 'Comprehensive brand systems that go beyond just a logo. This project focuses on visual consistency across multiple touchpoints, including color theory, typography systems, and brand guidelines that ensure a cohesive and memorable presence.',
-      gallery: ['https://lh3.googleusercontent.com/d/1uW4SEU4lr1jvBErCIxpMAwo17lKdJ5l6']
+      gallery: [
+        'https://lh3.googleusercontent.com/d/16LSdIUSdoxqkqaS932ETpW1zTFqEXZnJ',
+        'https://lh3.googleusercontent.com/d/1YAQdNkkevR1oIuuFHhXr3-w6aKBvNz7l',
+        'https://lh3.googleusercontent.com/d/1c23dfyJkuY3E4dXYnzyU3AwFRIHWahlG',
+        'https://lh3.googleusercontent.com/d/1hysW53Aj4skh1l5DxBTHzyH1h_UYvjP0',
+        'https://lh3.googleusercontent.com/d/1bJkYoQs_k-nnFBolO3GBoY_2MasVzpgg',
+        'https://lh3.googleusercontent.com/d/1NdW8_Fej16Nr8WdwUKWP96fCsgNHQ7ry',
+        'https://lh3.googleusercontent.com/d/1VLOUGMplQSZbiPmoVCVLSn6_4Jz58hww',
+        'https://lh3.googleusercontent.com/d/1GSd_06WWDkTuaiBuIP4TvxMpjE5cQB33',
+        'https://lh3.googleusercontent.com/d/1d0wOXwnIjuV_LGZG7gQNXE9DPItkmzJe',
+        'https://lh3.googleusercontent.com/d/1FTo18eXpyX1-_vkKVqbx29i2I6ZrusbM',
+        'https://lh3.googleusercontent.com/d/1pIYbor-6R2AEh2XHGBuD8iRyeTBl-CZy'
+      ]
     },
     {
       id: 3,
       title: 'PACKAGING',
       category: 'Product & Print',
       gradient: 'linear-gradient(135deg, #1a1a1a, #1a2d1a, #0f2010)',
-      image: 'https://lh3.googleusercontent.com/d/1YPQddgWneVo8UYLOY0aTncWzKAU-0BxK',
+      image: 'https://lh3.googleusercontent.com/d/1xKBVZvfrVXsp1PFmpJwHtb6aSPg7L13Z',
       description: 'Tactile experiences through physical design. Packaging that not only protects but also communicates the brand values through material choice, structure, and graphic layout. A study in how design translates from screen to physical form.',
-      gallery: ['https://lh3.googleusercontent.com/d/1_UqRYlVdLDQPthfmcET06V6esSaGcHkj']
+      gallery: [
+        'https://lh3.googleusercontent.com/d/1xKBVZvfrVXsp1PFmpJwHtb6aSPg7L13Z',
+        'https://lh3.googleusercontent.com/d/1QleWoaSuQmNA0f9ELNHANHf2YxkgEa1x',
+        'https://lh3.googleusercontent.com/d/1qYylRQx-toBscdl6k0n4uTTKTa3jJZ-k',
+        'https://lh3.googleusercontent.com/d/1JAwrwQOubbVkTfhj9zksX9_TFGxn6s6p',
+        'https://lh3.googleusercontent.com/d/1SZt_o0_w45X5x5gw1_FzLVux1sn-jphE',
+        'https://lh3.googleusercontent.com/d/1p0R3q6xV5dHpcxuW1tRyB4Ash_OpC7Xv',
+        'https://lh3.googleusercontent.com/d/1iKUjf9s0i38wkLsYIEqUNz-kQBKATR61',
+        'https://lh3.googleusercontent.com/d/1XoM6gI3_ckghBaE0ErLIkcJ1HRYKDd1d',
+        'https://lh3.googleusercontent.com/d/1w_c2f7xhwyth0F34dQBhpIfE5LRD9HGb',
+        'https://lh3.googleusercontent.com/d/1-8ioMZwPiTgowPTHdDCyG51G3SOmbg43',
+        'https://lh3.googleusercontent.com/d/1c-z9FHYZ_kDvzsbSIfOrzgt47d8wcpcP',
+        'https://lh3.googleusercontent.com/d/1aeK9nDMJSpkktNGvZ1PYxJfU7afjnwm9'
+      ]
     },
     {
       id: 4,
       title: 'POSTERS',
       category: 'Print & Visual',
       gradient: 'linear-gradient(135deg, #1a1a1a, #2d2a1a, #2a1f0a)',
-      image: 'https://lh3.googleusercontent.com/d/1ZUQXlI4VpIxAQIUoPSEuPwX7VUgXOqml',
+      image: 'https://lh3.googleusercontent.com/d/1TMfIt1Rg2WX7L5yuE0fJSUS7ojoMhkav',
       description: 'Large-scale visual communication. These posters explore bold typography, experimental layouts, and striking imagery to convey messages with maximum impact. A playground for visual exploration and graphic expression.',
       gallery: [
         'https://lh3.googleusercontent.com/d/13PTdncbf7LygEtjyYErIN9a09TlPcFlG',
@@ -72,8 +97,8 @@ export default function App() {
       mouseY.set(e.clientY);
       
       // Background parallax effect
-      const moveX = (e.clientX - window.innerWidth / 2) * 0.005;
-      const moveY = (e.clientY - window.innerHeight / 2) * 0.005;
+      const moveX = (e.clientX - window.innerWidth / 2) * 0.05;
+      const moveY = (e.clientY - window.innerHeight / 2) * 0.05;
       setBgOffset({ x: moveX, y: moveY });
     };
 
@@ -131,15 +156,6 @@ export default function App() {
     setScrollProgress(progress);
   };
 
-  const handleHoverStart = () => setIsHovering(true);
-  const handleHoverEnd = () => setIsHovering(false);
-  
-  const handlePhotoHoverStart = () => setIsPhotoHovering(true);
-  const handlePhotoHoverEnd = () => setIsPhotoHovering(false);
-
-  const handleCardHoverStart = () => setIsCardHovering(true);
-  const handleCardHoverEnd = () => setIsCardHovering(false);
-
   return (
     <div className="relative min-h-screen overflow-x-hidden selection:bg-red-900 selection:text-white">
       {/* Custom Cursor */}
@@ -148,9 +164,12 @@ export default function App() {
         style={{ x: mouseX, y: mouseY }}
       />
       <motion.div 
-        className={`cursor-ring ${isHovering ? 'hover-active' : ''} ${isPhotoHovering ? 'photo-hover' : ''} ${isCardHovering ? 'card-hover' : ''}`}
+        className={`cursor-ring ${cursorType !== 'default' ? 'active' : ''} cursor-${cursorType}`}
         style={{ x: ringX, y: ringY }}
-      />
+      >
+        {cursorType === 'arrow' && <span className="text-white text-sm font-bold">↗</span>}
+        {cursorType === 'send' && <span className="text-white text-[10px] font-bold tracking-widest">SEND</span>}
+      </motion.div>
 
       {/* Parallax Background */}
       <div 
@@ -173,8 +192,8 @@ export default function App() {
               key={item} 
               href={`#${item.toLowerCase()}`}
               className={`nav-link ${activeSection === item.toLowerCase() ? 'active' : 'hover:text-white'}`}
-              onMouseEnter={handleHoverStart}
-              onMouseLeave={handleHoverEnd}
+              onMouseEnter={() => setCursorType('hover')}
+              onMouseLeave={() => setCursorType('default')}
               onClick={(e) => {
                 e.preventDefault();
                 document.getElementById(item.toLowerCase())?.scrollIntoView({ behavior: 'smooth' });
@@ -197,8 +216,8 @@ export default function App() {
         >
           <div 
             className="relative w-full max-w-[320px] aspect-[3/4] rounded-[2.5rem] border border-white/20 shadow-2xl overflow-hidden group"
-            onMouseEnter={handlePhotoHoverStart}
-            onMouseLeave={handlePhotoHoverEnd}
+            onMouseEnter={() => setCursorType('photo')}
+            onMouseLeave={() => setCursorType('default')}
           >
             <div className="absolute inset-0 bg-[#222] flex items-center justify-center text-[#555] font-medium">
               <img 
@@ -213,7 +232,7 @@ export default function App() {
         </motion.div>
 
         {/* Right Side: Content */}
-        <div className="w-full md:w-[60%] mt-12 md:mt-0 md:pl-16 flex flex-col items-start">
+        <div className="w-full md:w-[60%] mt-12 md:mt-0 md:pl-6 flex flex-col items-start">
           <motion.span 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -229,7 +248,7 @@ export default function App() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="font-bebas text-[126px] leading-[0.85] text-white flex items-center flex-nowrap whitespace-nowrap"
           >
-            P<span className="inline-block">O</span>RTF<span className="text-accent font-serif-italic inline-block translate-y-[-0.05em] scale-110 mx-1">O</span>LIO
+            P<span className="inline-block">O</span>RTF<span className="text-accent font-serif-italic inline-block translate-y-[-0.02em] scale-125 ml-0 mr-4">O</span>LIO
           </motion.h1>
 
           <motion.p 
@@ -249,15 +268,15 @@ export default function App() {
           >
             <button 
               className="btn-pill"
-              onMouseEnter={handleHoverStart}
-              onMouseLeave={handleHoverEnd}
+              onMouseEnter={() => setCursorType('hover')}
+              onMouseLeave={() => setCursorType('default')}
             >
               GRAPHIC DESIGNER
             </button>
             <button 
               className="btn-pill"
-              onMouseEnter={handleHoverStart}
-              onMouseLeave={handleHoverEnd}
+              onMouseEnter={() => setCursorType('hover')}
+              onMouseLeave={() => setCursorType('default')}
             >
               VISUAL ARTIST
             </button>
@@ -289,11 +308,11 @@ export default function App() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
           {[
-            { label: 'EDUCATION', content: ['Masters in Visual Experiential Design', '2025–2027 (ongoing)'] },
+            { label: 'EDUCATION', content: ['Masters in Visual Experiential Design (UID)', '2025–2027 (ongoing)'] },
             { label: 'LANGUAGES', content: ['English', 'हिन्दी'] },
             { label: 'CONTACTS', content: [
               { icon: '✉', text: 'ashashash100100@gmail.com' },
-              { icon: '📷', text: 'ansh_0_o' }
+              { icon: 'https://lh3.googleusercontent.com/d/1xsSo6J3xr3rhcB0puapz-mjRHDBQzVyf', text: 'ansh_o_0', isImage: true }
             ] }
           ].map((col, idx) => (
             <motion.div 
@@ -311,7 +330,11 @@ export default function App() {
                       <span className={i === 0 ? 'text-white font-medium' : ''}>{item}</span>
                     ) : (
                       <>
-                        <span className="text-white text-lg">{item.icon}</span>
+                        {item.isImage ? (
+                          <img src={item.icon} alt="icon" className="w-5 h-5 object-contain" />
+                        ) : (
+                          <span className="text-white text-lg">{item.icon}</span>
+                        )}
                         <span>{item.text}</span>
                       </>
                     )}
@@ -336,7 +359,7 @@ export default function App() {
                 { name: 'Ai', color: '#FF9A00' },
                 { name: 'Id', color: '#FF3366' },
                 { name: 'Ae', color: '#9999FF' },
-                { isFigma: true }
+                { icon: 'https://lh3.googleusercontent.com/d/1Ds9-MGj8vDAiHWA7uS5b852sH_2IavrI', isImage: true }
               ].map((skill, i) => (
                 <motion.div 
                   key={i}
@@ -344,17 +367,11 @@ export default function App() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.05 * i + 0.7 }}
-                  className="w-[60px] h-[60px] bg-[#222] border border-white/10 rounded-xl flex items-center justify-center font-bold text-lg"
+                  className="w-[60px] h-[60px] bg-[#222] border border-white/10 rounded-xl flex items-center justify-center font-bold text-lg overflow-hidden"
                   style={{ color: skill.color }}
                 >
-                  {skill.isFigma ? (
-                    <svg width="32" height="32" viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M19 28.5C19 23.2533 14.7467 19 9.5 19C4.2533 19 0 23.2533 0 28.5C0 33.7467 4.2533 38 9.5 38H19V28.5Z" fill="#0ACF83"/>
-                      <path d="M0 9.5C0 4.2533 4.2533 0 9.5 0H19V19H9.5C4.2533 19 0 14.7467 0 9.5Z" fill="#F24E1E"/>
-                      <path d="M19 0H28.5C33.7467 0 38 4.2533 38 9.5C38 14.7467 33.7467 19 28.5 19H19V0Z" fill="#FF7262"/>
-                      <path d="M38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5Z" fill="#1ABCFE"/>
-                      <path d="M19 38H28.5C33.7467 38 38 42.2533 38 47.5C38 52.7467 33.7467 57 28.5 57C23.2533 57 19 52.7467 19 47.5V38Z" fill="#A259FF"/>
-                    </svg>
+                  {skill.isImage ? (
+                    <img src={skill.icon} alt="skill" className="w-8 h-8 object-contain" />
                   ) : skill.name}
                 </motion.div>
               ))}
@@ -371,12 +388,12 @@ export default function App() {
             <div className="flex flex-col gap-3">
               <div className="flex gap-3 flex-wrap">
                 {['Designing', 'Illustration', 'Typography'].map(tag => (
-                  <button key={tag} className="btn-pill" onMouseEnter={handleHoverStart} onMouseLeave={handleHoverEnd}>{tag}</button>
+                  <button key={tag} className="btn-pill" onMouseEnter={() => setCursorType('hover')} onMouseLeave={() => setCursorType('default')}>{tag}</button>
                 ))}
               </div>
               <div className="flex gap-3 flex-wrap">
                 {['Psychology', 'Problem solving'].map(tag => (
-                  <button key={tag} className="btn-pill" onMouseEnter={handleHoverStart} onMouseLeave={handleHoverEnd}>{tag}</button>
+                  <button key={tag} className="btn-pill" onMouseEnter={() => setCursorType('hover')} onMouseLeave={() => setCursorType('default')}>{tag}</button>
                 ))}
               </div>
             </div>
@@ -417,8 +434,8 @@ export default function App() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 + idx * 0.15 }}
               className="project-card group"
-              onMouseEnter={handleCardHoverStart}
-              onMouseLeave={handleCardHoverEnd}
+              onMouseEnter={() => setCursorType('card')}
+              onMouseLeave={() => setCursorType('default')}
               onClick={() => setSelectedProject(project.id)}
             >
               <div className="project-thumbnail">
@@ -426,6 +443,7 @@ export default function App() {
                   src={project.image} 
                   alt={project.title} 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  style={{ objectPosition: project.title === 'LOGOFOLIO' ? 'center 30%' : 'center' }}
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300" />
@@ -441,6 +459,215 @@ export default function App() {
           ))}
         </div>
       </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="container mx-auto min-h-screen flex flex-col md:flex-row items-center justify-center px-8 py-20 gap-16">
+        {/* Left Half */}
+        <div className="w-full md:w-1/2 flex flex-col items-start">
+          <motion.span 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-accent uppercase mb-4"
+            style={{ fontFamily: 'Arial', fontSize: '14px', letterSpacing: '0.25em' }}
+          >
+            GET IN TOUCH
+          </motion.span>
+          
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="font-bebas text-[90px] leading-[0.9] text-white mb-6"
+          >
+            Let's make<br />
+            something<br />
+            <span className="text-accent lowercase ml-2" style={{ fontFamily: 'Times New Roman', fontWeight: 'normal', fontStyle: 'italic', fontSize: '96.5px', textDecorationLine: 'none', textAlign: 'left', lineHeight: '46.95px' }}>great</span><span className="text-accent">.</span>
+          </motion.h2>
+
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-[#AAAAAA] text-base max-w-[380px] mb-12 font-light leading-relaxed"
+            style={{ paddingTop: '15px' }}
+          >
+            Open to freelance projects, collaborations, and conversations.
+          </motion.p>
+
+          <div className="w-full max-w-[450px] flex flex-col">
+            {[
+              { label: 'BEHANCE', value: 'Ansh Raj — Graphic Designer', link: 'https://www.behance.net/anshvanshraj' },
+              { label: 'INSTAGRAM', value: '@ansh_o_0', link: 'https://instagram.com/ansh_o_0' },
+              { label: 'MAIL', value: 'ashashash100100@gmail.com', link: 'mailto:ashashash100100@gmail.com' },
+              { label: 'MAIL', value: 'anshvanshraj2017@gmail.com', link: 'mailto:anshvanshraj2017@gmail.com' }
+            ].map((item, idx) => (
+              <motion.a
+                key={idx}
+                href={item.link}
+                target="_blank"
+                rel="noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 + idx * 0.1 }}
+                onMouseEnter={() => setCursorType('arrow')}
+                onMouseLeave={() => setCursorType('default')}
+                className="group flex items-center py-5 border-b border-white/10 transition-all duration-300 hover:bg-white/5 hover:px-4 relative overflow-hidden"
+              >
+                <span className="w-[110px] font-bold text-[11px] text-accent tracking-[0.2em] uppercase">{item.label}</span>
+                <span className="text-white text-base transition-colors group-hover:text-accent">{item.value}</span>
+                <span className="absolute right-4 text-accent text-xl opacity-0 -translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">↗</span>
+              </motion.a>
+            ))}
+          </div>
+        </div>
+
+        {/* Right Half: Form */}
+        <div className="w-full md:w-1/2 md:pl-12">
+          <div className="flex flex-col gap-10">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="flex flex-col"
+            >
+              <label className="font-bebas text-accent text-[13px] tracking-[0.15em] mb-2">YOUR NAME</label>
+              <input 
+                type="text" 
+                placeholder="Ansh Raj"
+                onMouseEnter={() => setCursorType('text')}
+                onMouseLeave={() => setCursorType('default')}
+                className="bg-transparent border-b border-white/10 py-3 text-white focus:outline-none focus:border-accent transition-colors placeholder:text-white/20"
+              />
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              className="flex flex-col"
+            >
+              <label className="font-bebas text-accent text-[13px] tracking-[0.15em] mb-2">YOUR EMAIL</label>
+              <input 
+                type="email" 
+                placeholder="hello@email.com"
+                onMouseEnter={() => setCursorType('text')}
+                onMouseLeave={() => setCursorType('default')}
+                className="bg-transparent border-b border-white/10 py-3 text-white focus:outline-none focus:border-accent transition-colors placeholder:text-white/20"
+              />
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6 }}
+              className="flex flex-col"
+            >
+              <label className="font-bebas text-accent text-[13px] tracking-[0.15em] mb-4">PROJECT TYPE</label>
+              <div className="flex flex-wrap gap-3">
+                {['Branding', 'Logo Design', 'Packaging', 'Poster', 'Other'].map((type) => (
+                  <button
+                    key={type}
+                    onClick={() => {
+                      setSelectedPills(prev => 
+                        prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
+                      );
+                    }}
+                    onMouseEnter={() => setCursorType('hover')}
+                    onMouseLeave={() => setCursorType('default')}
+                    className={`px-5 py-2 rounded-full text-[13px] border transition-all duration-300 ${
+                      selectedPills.includes(type) 
+                        ? 'bg-accent border-accent text-white' 
+                        : 'bg-[#222] border-white/10 text-white hover:border-accent'
+                    }`}
+                  >
+                    {type}
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.7 }}
+              className="flex flex-col"
+            >
+              <label className="font-bebas text-accent text-[13px] tracking-[0.15em] mb-2">YOUR MESSAGE</label>
+              <textarea 
+                placeholder="Tell me about your project..."
+                rows={4}
+                onMouseEnter={() => setCursorType('text')}
+                onMouseLeave={() => setCursorType('default')}
+                className="bg-transparent border-b border-white/10 py-3 text-white focus:outline-none focus:border-accent transition-colors placeholder:text-white/20 resize-none"
+              />
+            </motion.div>
+
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.8 }}
+              onMouseEnter={() => setCursorType('send')}
+              onMouseLeave={() => setCursorType('default')}
+              onClick={() => {
+                setIsSent(true);
+                setTimeout(() => setIsSent(false), 2000);
+              }}
+              className="w-full h-[56px] bg-accent text-white font-bebas text-lg tracking-[0.15em] rounded-lg relative overflow-hidden group transition-colors hover:bg-[#ff2800]"
+            >
+              <span className="relative z-10">{isSent ? 'SENT ✓' : 'SEND MESSAGE'}</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500 ease-in-out" />
+            </motion.button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="w-full border-t border-white/10 py-6 px-10 flex flex-col md:flex-row justify-between items-center gap-6">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="text-[#AAAAAA] text-[12px]"
+        >
+          © 2025 Ansh Raj. All rights reserved.
+        </motion.div>
+
+        <div className="flex gap-8">
+          {[
+            { icon: 'https://www.vectorlogo.zone/logos/behance/behance-icon.svg', link: 'https://www.behance.net/anshvanshraj' },
+            { icon: 'https://www.vectorlogo.zone/logos/instagram/instagram-icon.svg', link: 'https://instagram.com/ansh_o_0' },
+            { icon: 'https://www.vectorlogo.zone/logos/gmail/gmail-icon.svg', link: 'mailto:ashashash100100@gmail.com' }
+          ].map((social, i) => (
+            <motion.a
+              key={i}
+              href={social.link}
+              target="_blank"
+              rel="noreferrer"
+              onMouseEnter={() => setCursorType('social')}
+              onMouseLeave={() => setCursorType('default')}
+              className="w-5 h-5 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300 hover:scale-125"
+            >
+              <img src={social.icon} alt="social" className="w-full h-full object-contain invert" />
+            </motion.a>
+          ))}
+        </div>
+
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="text-[#AAAAAA] text-[12px]"
+        >
+          Designed & built by Ansh Raj
+        </motion.div>
+      </footer>
 
       {/* Project Overlay */}
       {selectedProject !== null && (
@@ -498,7 +725,7 @@ export default function App() {
             {/* Block 2: Gallery */}
             {projects.find(p => p.id === selectedProject)?.gallery && (
               <section className="px-4 md:px-0 py-20 bg-[#111]">
-                <div className="max-w-screen-xl mx-auto flex flex-col gap-12">
+                <div className="max-w-screen-xl mx-auto flex flex-col gap-0">
                   {projects.find(p => p.id === selectedProject)?.gallery?.map((img, i) => (
                     <motion.div 
                       key={i}
@@ -511,7 +738,7 @@ export default function App() {
                       <img 
                         src={img} 
                         alt={`Gallery ${i}`} 
-                        className="w-full h-auto max-w-full rounded-lg shadow-2xl"
+                        className="w-full h-auto max-w-full"
                         referrerPolicy="no-referrer"
                       />
                     </motion.div>

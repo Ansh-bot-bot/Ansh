@@ -36,6 +36,7 @@ body {
   height: 120%;
   z-index: -1;
   pointer-events: none;
+  transition: transform 0.15s ease-out;
 }
 
 /* Custom Cursor Styles */
@@ -81,25 +82,48 @@ body {
   transition: opacity 0.3s;
 }
 
-.cursor-ring.hover-active {
+.cursor-ring.cursor-hover {
   width: 55px;
   height: 55px;
 }
 
-.cursor-ring.card-hover {
+.cursor-ring.cursor-card {
   width: 80px;
   height: 80px;
   background: rgba(204, 34, 0, 0.15);
 }
 
-.cursor-ring.card-hover::after {
+.cursor-ring.cursor-card::after {
   content: 'VIEW';
   opacity: 1;
 }
 
-.cursor-ring.photo-hover {
+.cursor-ring.cursor-photo {
   width: 80px;
   height: 80px;
+  background: rgba(204, 34, 0, 0.15);
+}
+
+.cursor-ring.cursor-arrow {
+  width: 70px;
+  height: 70px;
+}
+
+.cursor-ring.cursor-send {
+  width: 80px;
+  height: 80px;
+  background: rgba(204, 34, 0, 0.2);
+}
+
+.cursor-ring.cursor-text {
+  width: 20px;
+  height: 20px;
+  border-color: #fff;
+}
+
+.cursor-ring.cursor-social {
+  width: 50px;
+  height: 50px;
   background: rgba(204, 34, 0, 0.15);
 }
 

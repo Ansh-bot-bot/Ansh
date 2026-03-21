@@ -246,9 +246,23 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="font-bebas text-[126px] leading-[0.85] text-white flex items-center flex-nowrap whitespace-nowrap"
+            whileHover="hover"
+            className="font-bebas text-[126px] leading-[0.85] text-white flex items-center flex-nowrap whitespace-nowrap cursor-default"
           >
-            P<span className="inline-block">O</span>RTF<span className="text-accent font-serif-italic inline-block translate-y-[-0.02em] scale-125 ml-0 mr-4">O</span>LIO
+            <motion.span variants={{ hover: { y: -5, transition: { delay: 0 } } }}>P</motion.span>
+            <motion.span variants={{ hover: { y: -8, transition: { delay: 0.05 } } }} className="inline-block">O</motion.span>
+            <motion.span variants={{ hover: { y: -5, transition: { delay: 0.1 } } }}>R</motion.span>
+            <motion.span variants={{ hover: { y: -8, transition: { delay: 0.15 } } }}>T</motion.span>
+            <motion.span variants={{ hover: { y: -5, transition: { delay: 0.2 } } }}>F</motion.span>
+            <motion.span 
+              variants={{ hover: { y: -12, scale: 1.4, transition: { delay: 0.25 } } }} 
+              className="text-accent font-serif-italic inline-block translate-y-[-0.02em] scale-125 ml-0 mr-4"
+            >
+              O
+            </motion.span>
+            <motion.span variants={{ hover: { y: -5, transition: { delay: 0.3 } } }}>L</motion.span>
+            <motion.span variants={{ hover: { y: -8, transition: { delay: 0.35 } } }}>I</motion.span>
+            <motion.span variants={{ hover: { y: -5, transition: { delay: 0.4 } } }}>O</motion.span>
           </motion.h1>
 
           <motion.p 

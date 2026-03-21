@@ -223,7 +223,7 @@ export default function App() {
               <img 
                 src="https://lh3.googleusercontent.com/d/1Rn9FYS7yCycURWcsdXB_UV24-2K2dSLG" 
                 alt="Portrait" 
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                className="w-full h-full object-cover transition-all duration-700"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />

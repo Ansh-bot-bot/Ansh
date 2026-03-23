@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useSpring, useMotionValue } from 'motion/react';
+import { motion, useSpring, useMotionValue, useScroll, useTransform } from 'motion/react';
 
 export default function App() {
   const [selectedProject, setSelectedProject] = useState<null | number>(null);
@@ -20,7 +20,14 @@ export default function App() {
   const ringY = useSpring(mouseY, { damping: 20, stiffness: 150 });
   
   // Parallax background
-  const [bgOffset, setBgOffset] = useState({ x: 0, y: 0 });
+  const bgX = useMotionValue(0);
+  const bgY = useMotionValue(0);
+  const { scrollY } = useScroll();
+  const scrollParallax = useTransform(scrollY, [0, 3000], [0, -150]);
+  
+  // Combine mouse and scroll parallax
+  const finalBgX = useSpring(bgX, { damping: 30, stiffness: 200 });
+  const finalBgY = useSpring(useTransform([bgY, scrollParallax], ([y, s]) => (y as number) + (s as number)), { damping: 30, stiffness: 200 });
 
   const projects = [
     {
@@ -97,9 +104,8 @@ export default function App() {
       mouseY.set(e.clientY);
       
       // Background parallax effect
-      const moveX = (e.clientX - window.innerWidth / 2) * 0.05;
-      const moveY = (e.clientY - window.innerHeight / 2) * 0.05;
-      setBgOffset({ x: moveX, y: moveY });
+      bgX.set((e.clientX - window.innerWidth / 2) * 0.05);
+      bgY.set((e.clientY - window.innerHeight / 2) * 0.05);
     };
 
     const handleScroll = () => {
@@ -172,9 +178,13 @@ export default function App() {
       </motion.div>
 
       {/* Parallax Background */}
-      <div 
+      <motion.div 
         className="dot-grid" 
-        style={{ transform: selectedProject === null ? `translate(${bgOffset.x}px, ${bgOffset.y}px)` : 'none' }}
+        style={{ 
+          x: selectedProject === null ? finalBgX : 0,
+          y: selectedProject === null ? finalBgY : 0,
+          opacity: selectedProject === null ? 1 : 0
+        }}
       />
 
       {/* Navigation */}

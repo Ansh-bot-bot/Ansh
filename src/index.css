@@ -27,8 +27,6 @@ body {
 }
 
 .dot-grid {
-  background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
-  background-size: 28px 28px;
   position: fixed;
   top: -10%;
   left: -10%;
@@ -279,8 +277,6 @@ nav.scrolled .nav-logo-container {
   inset: 0;
   z-index: 200;
   background: var(--bg);
-  background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
-  background-size: 28px 28px;
   overflow-y: auto;
   overflow-x: hidden;
 }

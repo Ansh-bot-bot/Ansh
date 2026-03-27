@@ -311,9 +311,9 @@ export default function App() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-[#AAAAAA] text-base md:text-lg max-w-[900px] mb-20 font-light leading-relaxed"
+          className="text-[#AAAAAA] text-base md:text-lg w-[1500px] max-w-none mb-20 font-light leading-[29.25px]"
         >
-          A graphic design student focused on clarity, precision, and quiet impact. The work strips away the unnecessary, leaving space for ideas to stand on their own. Clean structure meets subtle tension—where small details carry weight and restraint becomes a style. Still evolving, with each project refining a sharper, more intentional visual voice.
+          I’m a designer who lives for the "aha!" moment when a messy idea finally clicks into place. My process is a mix of strategic thinking and the frantic energy of someone whose creative software just crashed for the third time today. I take my work seriously, but I’m not above naming my files FINAL_FINAL_PROMISE.pdf while I quest for the perfect layout. I’m here to make things look good, work better, and maybe survive the next deadline.
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">

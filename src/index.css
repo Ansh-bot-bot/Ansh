@@ -26,17 +26,6 @@ body {
   cursor: none; /* Hide default cursor */
 }
 
-.dot-grid {
-  position: fixed;
-  top: -10%;
-  left: -10%;
-  width: 120%;
-  height: 120%;
-  z-index: -1;
-  pointer-events: none;
-  transition: transform 0.15s ease-out;
-}
-
 /* Custom Cursor Styles */
 .cursor-dot {
   width: 8px;

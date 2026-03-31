@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useSpring, useMotionValue, useScroll, useTransform } from 'motion/react';
+import { DottedWave } from './components/DottedWave';
 
 export default function App() {
   const [selectedProject, setSelectedProject] = useState<null | number>(null);
@@ -178,13 +179,11 @@ export default function App() {
       </motion.div>
 
       {/* Parallax Background */}
-      <motion.div 
-        className="dot-grid" 
-        style={{ 
-          x: selectedProject === null ? finalBgX : 0,
-          y: selectedProject === null ? finalBgY : 0,
-          opacity: selectedProject === null ? 1 : 0
-        }}
+      <DottedWave 
+        mouseX={mouseX} 
+        mouseY={mouseY} 
+        scrollY={scrollY} 
+        opacity={selectedProject === null ? 1 : 0}
       />
 
       {/* Navigation */}
@@ -222,7 +221,7 @@ export default function App() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="w-full md:w-[35%] flex justify-center md:justify-start"
+          className="w-full md:w-[35%] flex justify-center md:justify-start pl-[46px] pb-0 ml-0"
         >
           <div 
             className="relative w-full max-w-[320px] aspect-[3/4] rounded-[2.5rem] border border-white/20 shadow-2xl overflow-hidden group"
@@ -256,7 +255,7 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="font-bebas text-[126px] leading-[0.85] text-white flex items-center flex-nowrap whitespace-nowrap"
+            className="font-bebas text-[126px] leading-[0.85] text-white flex items-center flex-nowrap whitespace-nowrap w-[743.6px] pr-0"
           >
             P<span className="inline-block">O</span>RTF<span className="text-accent font-serif-italic inline-block translate-y-[-0.02em] scale-125 ml-0 mr-4">O</span>LIO
           </motion.h1>
@@ -311,7 +310,7 @@ export default function App() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-[#AAAAAA] text-base md:text-lg w-[1500px] max-w-none mb-20 font-light leading-[29.25px]"
+          className="text-[#AAAAAA] text-base md:text-lg w-[1100px] max-w-none mb-20 font-light leading-[29.25px]"
         >
           I’m a designer who lives for the "aha!" moment when a messy idea finally clicks into place. My process is a mix of strategic thinking and the frantic energy of someone whose creative software just crashed for the third time today. I take my work seriously, but I’m not above naming my files FINAL_FINAL_PROMISE.pdf while I quest for the perfect layout. I’m here to make things look good, work better, and maybe survive the next deadline.
         </motion.p>

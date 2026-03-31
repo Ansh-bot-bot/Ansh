@@ -48,7 +48,7 @@ export const DottedWave: React.FC<DottedWaveProps> = ({ mouseX, mouseY, scrollY,
       // Scroll parallax
       const scrollOffset = currentScrollY * -0.05;
 
-      ctx.fillStyle = '#2a2a2a';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
 
       // Draw dots with wave effect
       for (let x = -dotSpacing; x < canvas.width + dotSpacing; x += dotSpacing) {

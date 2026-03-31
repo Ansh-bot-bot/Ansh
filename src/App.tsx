@@ -91,7 +91,7 @@ export default function App() {
       title: 'POSTERS',
       category: 'Print & Visual',
       gradient: 'linear-gradient(135deg, #1a1a1a, #2d2a1a, #2a1f0a)',
-      image: 'https://lh3.googleusercontent.com/d/1rWevHHU3ntlS-ftSI5HVs7xeAJRk855X',
+      image: 'https://lh3.googleusercontent.com/d/1TMfIt1Rg2WX7L5yuE0fJSUS7ojoMhkav',
       description: 'Large-scale visual communication. These posters explore bold typography, experimental layouts, and striking imagery to convey messages with maximum impact. A playground for visual exploration and graphic expression.',
       gallery: [
         'https://lh3.googleusercontent.com/d/1rWevHHU3ntlS-ftSI5HVs7xeAJRk855X',

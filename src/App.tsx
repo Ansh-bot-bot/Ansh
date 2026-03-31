@@ -38,7 +38,10 @@ export default function App() {
       gradient: 'linear-gradient(135deg, #1a1a1a, #2d1a1a, #3a1010)',
       image: 'https://lh3.googleusercontent.com/d/1JPhLNJIBuMw_Mmvwba9vMBmEnWFhAw2e',
       description: 'A collection of visual identities crafted with precision and purpose. Each logo represents a unique story, distilled into its most essential form. From minimalist marks to complex brand symbols, this folio explores the intersection of geometry and meaning.',
-      gallery: ['https://lh3.googleusercontent.com/d/14rKNtuO_S9uBl7YI5rxM6ojcGGkfbqk1']
+      gallery: [
+        'https://lh3.googleusercontent.com/d/14rKNtuO_S9uBl7YI5rxM6ojcGGkfbqk1',
+        'https://lh3.googleusercontent.com/d/1Cbd2-tEeM2U56otGCB1Wc69nSLgw0wXx'
+      ]
     },
     {
       id: 2,
@@ -88,13 +91,13 @@ export default function App() {
       title: 'POSTERS',
       category: 'Print & Visual',
       gradient: 'linear-gradient(135deg, #1a1a1a, #2d2a1a, #2a1f0a)',
-      image: 'https://lh3.googleusercontent.com/d/1TMfIt1Rg2WX7L5yuE0fJSUS7ojoMhkav',
+      image: 'https://lh3.googleusercontent.com/d/1rWevHHU3ntlS-ftSI5HVs7xeAJRk855X',
       description: 'Large-scale visual communication. These posters explore bold typography, experimental layouts, and striking imagery to convey messages with maximum impact. A playground for visual exploration and graphic expression.',
       gallery: [
-        'https://lh3.googleusercontent.com/d/13PTdncbf7LygEtjyYErIN9a09TlPcFlG',
-        'https://lh3.googleusercontent.com/d/1PbDnakxmHGySaw6nrXlAM3U_OTk9f2u5',
-        'https://lh3.googleusercontent.com/d/1Z2VPmngvVxBORgxXifKkcwXZwLw0WYdQ',
-        'https://lh3.googleusercontent.com/d/1v6QFGMsi6_ryQwlL3FatMkeN3uBixKU6'
+        'https://lh3.googleusercontent.com/d/1rWevHHU3ntlS-ftSI5HVs7xeAJRk855X',
+        'https://lh3.googleusercontent.com/d/1KM8H1EcOgaOJFPSTqHemMfqUOdMMFQ4M',
+        'https://lh3.googleusercontent.com/d/19OW2VaCtujVSzjWz9rEpdUcm2wkluH3x',
+        'https://lh3.googleusercontent.com/d/1ecFPkQ1gFsxeMMBLmt7FiE4SlA8ogT_P'
       ]
     }
   ];

@@ -221,7 +221,7 @@ export default function App() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="w-full md:w-[35%] flex justify-center md:justify-start pl-[46px] pb-0 ml-0"
+          className="w-full md:w-[35%] flex justify-center md:justify-start pl-[27px] pb-0 ml-0"
         >
           <div 
             className="relative w-full max-w-[320px] aspect-[3/4] rounded-[2.5rem] border border-white/20 shadow-2xl overflow-hidden group"
@@ -255,7 +255,7 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="font-bebas text-[126px] leading-[0.85] text-white flex items-center flex-nowrap whitespace-nowrap w-[743.6px] pr-0"
+            className="font-bebas text-[124px] leading-[0.85] text-white flex items-center flex-nowrap whitespace-nowrap w-[743.6px] pr-0"
           >
             P<span className="inline-block">O</span>RTF<span className="text-accent font-serif-italic inline-block translate-y-[-0.02em] scale-125 ml-0 mr-4">O</span>LIO
           </motion.h1>

@@ -224,7 +224,7 @@ export default function App() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="w-full md:w-[35%] flex justify-center md:justify-start pl-[27px] pb-0 ml-0"
+          className="w-full md:w-[35%] flex justify-center md:justify-start pl-[126px] pb-0 ml-0"
         >
           <div 
             className="relative w-full max-w-[320px] aspect-[3/4] rounded-[2.5rem] border border-white/20 shadow-2xl overflow-hidden group"
@@ -244,7 +244,7 @@ export default function App() {
         </motion.div>
 
         {/* Right Side: Content */}
-        <div className="w-full md:w-[60%] mt-12 md:mt-0 md:pl-6 flex flex-col items-start">
+        <div className="w-full md:w-[60%] mt-12 md:mt-0 md:pl-[54px] flex flex-col items-start">
           <motion.span 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -297,7 +297,7 @@ export default function App() {
       </main>
 
       {/* About Section */}
-      <section id="about" className="container mx-auto min-h-screen flex flex-col justify-center px-8 py-20">
+      <section id="about" className="container mx-auto min-h-screen flex flex-col justify-center pl-[100px] pr-8 py-20">
         <motion.h2 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -414,7 +414,7 @@ export default function App() {
       </section>
 
       {/* Work Section */}
-      <section id="work" className="container mx-auto min-h-screen px-8 py-20">
+      <section id="work" className="container mx-auto min-h-screen px-[100px] py-20">
         <div className="flex justify-between items-end mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -473,7 +473,7 @@ export default function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="container mx-auto min-h-screen flex flex-col md:flex-row items-center justify-center px-8 py-20 gap-16">
+      <section id="contact" className="container mx-auto min-h-screen flex flex-col md:flex-row items-center justify-center px-[100px] py-20 gap-16">
         {/* Left Half */}
         <div className="w-full md:w-1/2 flex flex-col items-start">
           <motion.span 

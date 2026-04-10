@@ -708,7 +708,7 @@ export default function App() {
 
           <div className="w-full">
             {/* Block 1: Intro */}
-            <section className="overlay-slide flex flex-col md:flex-row items-center px-12 md:px-24 relative overflow-hidden">
+            <section className="min-h-[60vh] flex flex-col md:flex-row items-center px-12 md:px-24 relative overflow-hidden py-20">
               <div className="absolute inset-0 z-0">
                 <img 
                   src={projects.find(p => p.id === selectedProject)?.image} 
@@ -739,12 +739,8 @@ export default function App() {
               <section className="px-4 md:px-0 py-20 bg-[#111]">
                 <div className="max-w-screen-xl mx-auto flex flex-col gap-0">
                   {projects.find(p => p.id === selectedProject)?.gallery?.map((img, i) => (
-                    <motion.div 
+                    <div 
                       key={i}
-                      initial={{ opacity: 0, y: 40 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8 }}
                       className="w-full flex justify-center"
                     >
                       <img 
@@ -753,14 +749,14 @@ export default function App() {
                         className="w-full h-auto max-w-full"
                         referrerPolicy="no-referrer"
                       />
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </section>
             )}
 
             {/* Block 4: Close Slide */}
-            <section className="overlay-slide bg-[#1a1a1a] flex flex-col items-center justify-center gap-8">
+            <section className="min-h-[40vh] bg-[#1a1a1a] flex flex-col items-center justify-center gap-8 py-20">
               <h4 className="font-bebas text-6xl text-white">More Projects</h4>
               <div className="flex gap-4">
                 {projects.filter(p => p.id !== selectedProject).slice(0, 2).map(p => (

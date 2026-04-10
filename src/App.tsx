@@ -198,7 +198,7 @@ export default function App() {
             A
           </div>
         </div>
-        <div className="flex gap-8 text-sm font-medium text-[#CCCCCC]">
+        <div className="flex gap-4 md:gap-8 text-xs md:text-sm font-medium text-[#CCCCCC]">
           {['About', 'Work', 'Services', 'Contact'].map((item) => (
             <a 
               key={item} 
@@ -218,13 +218,13 @@ export default function App() {
       </nav>
 
       {/* Hero Section */}
-      <main id="home" className="container mx-auto min-h-screen flex flex-col md:flex-row items-center justify-center px-8 pt-20">
+      <main id="home" className="container mx-auto min-h-screen flex flex-col md:flex-row items-center justify-center px-4 md:px-8 pt-20">
         {/* Left Side: Photo */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="w-full md:w-[35%] flex justify-center md:justify-start pl-[126px] pb-0 ml-0"
+          className="w-full md:w-[35%] flex justify-center md:justify-start pl-0 md:pl-[126px] pb-0 ml-0"
         >
           <div 
             className="relative w-full max-w-[320px] aspect-[3/4] rounded-[2.5rem] border border-white/20 shadow-2xl overflow-hidden group"
@@ -244,12 +244,12 @@ export default function App() {
         </motion.div>
 
         {/* Right Side: Content */}
-        <div className="w-full md:w-[60%] mt-12 md:mt-0 md:pl-[54px] flex flex-col items-start">
+        <div className="w-full md:w-[60%] mt-12 md:mt-0 px-4 md:px-0 md:pl-[54px] flex flex-col items-start">
           <motion.span 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-[#CCCCCC] text-xs uppercase tracking-[0.3em] font-light mb-4 pl-[9px]"
+            className="text-[#CCCCCC] text-xs uppercase tracking-[0.3em] font-light mb-4 md:pl-[9px]"
           >
             not your everyday
           </motion.span>
@@ -258,7 +258,7 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="font-bebas text-[124px] leading-[0.85] text-white flex items-center flex-nowrap whitespace-nowrap w-[743.6px] pr-0"
+            className="font-bebas text-[64px] sm:text-[90px] md:text-[124px] leading-[0.85] text-white flex items-center flex-wrap md:flex-nowrap whitespace-normal md:whitespace-nowrap w-full md:w-[743.6px] pr-0"
           >
             P<span className="inline-block">O</span>RTF<span className="text-accent font-serif-italic inline-block translate-y-[-0.02em] scale-125 ml-0 mr-4">O</span>LIO
           </motion.h1>
@@ -267,7 +267,7 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-[#CCCCCC] text-sm md:text-base max-w-md mt-6 font-light leading-relaxed pl-[9px]"
+            className="text-[#CCCCCC] text-sm md:text-base max-w-md mt-6 font-light leading-relaxed md:pl-[9px]"
           >
             I design like no one is watching—and then make sure everyone does
           </motion.p>
@@ -297,15 +297,15 @@ export default function App() {
       </main>
 
       {/* About Section */}
-      <section id="about" className="container mx-auto min-h-screen flex flex-col justify-center pl-[100px] pr-8 py-20">
+      <section id="about" className="container mx-auto min-h-screen flex flex-col justify-center px-6 md:pl-[100px] md:pr-8 py-20">
         <motion.h2 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="font-bebas text-[75.672px] leading-none text-white mb-10 w-full md:w-[701px]"
+          className="font-bebas text-[48px] sm:text-[60px] md:text-[75.672px] leading-none text-white mb-10 w-full md:w-[701px]"
         >
-          Hey<span className="text-accent inline-block ml-1 mr-3" style={{ fontFamily: 'Arial', fontSize: '98.2392px', fontStyle: 'normal', paddingLeft: '13px' }}>!</span> It's me Ansh :)
+          Hey<span className="text-accent inline-block ml-1 mr-3" style={{ fontFamily: 'Arial', fontSize: 'clamp(40px, 10vw, 98.2392px)', fontStyle: 'normal', paddingLeft: '13px' }}>!</span> It's me Ansh :)
         </motion.h2>
 
         <motion.p 
@@ -313,7 +313,7 @@ export default function App() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-[#AAAAAA] text-base md:text-lg w-[1100px] max-w-none mb-20 font-light leading-[29.25px]"
+          className="text-[#AAAAAA] text-base md:text-lg w-full md:w-[1100px] max-w-none mb-20 font-light leading-relaxed md:leading-[29.25px]"
         >
           I’m a designer who lives for the "aha!" moment when a messy idea finally clicks into place. My process is a mix of strategic thinking and the frantic energy of someone whose creative software just crashed for the third time today. I take my work seriously, but I’m not above naming my files FINAL_FINAL_PROMISE.pdf while I quest for the perfect layout. I’m here to make things look good, work better, and maybe survive the next deadline.
         </motion.p>
@@ -414,8 +414,8 @@ export default function App() {
       </section>
 
       {/* Work Section */}
-      <section id="work" className="container mx-auto min-h-screen px-[100px] py-20">
-        <div className="flex justify-between items-end mb-12">
+      <section id="work" className="container mx-auto min-h-screen px-6 md:px-[100px] py-20">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -423,7 +423,7 @@ export default function App() {
             transition={{ duration: 0.6 }}
           >
             <span className="font-bebas text-accent tracking-[0.2em] text-sm block mb-2">SELECTED WORKS</span>
-            <h2 className="font-bebas text-[100px] leading-none text-white">Work</h2>
+            <h2 className="font-bebas text-[60px] sm:text-[80px] md:text-[100px] leading-none text-white">Work</h2>
             <div className="w-[60px] h-[2px] bg-accent mt-4" />
           </motion.div>
           <motion.div
@@ -473,9 +473,9 @@ export default function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="container mx-auto min-h-screen flex flex-col md:flex-row items-center justify-center px-[100px] py-20 gap-16">
+      <section id="contact" className="container mx-auto min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 md:px-[100px] py-20 gap-16">
         {/* Left Half */}
-        <div className="w-full md:w-1/2 flex flex-col items-start">
+        <div className="w-full lg:w-1/2 flex flex-col items-start">
           <motion.span 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -491,11 +491,11 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="font-bebas text-[90px] leading-[0.9] text-white mb-6"
+            className="font-bebas text-[50px] sm:text-[70px] md:text-[90px] leading-[0.9] text-white mb-6"
           >
             Let's make<br />
             something<br />
-            <span className="text-accent lowercase ml-2" style={{ fontFamily: 'Times New Roman', fontWeight: 'normal', fontStyle: 'italic', fontSize: '96.5px', textDecorationLine: 'none', textAlign: 'left', lineHeight: '46.95px' }}>great</span><span className="text-accent">.</span>
+            <span className="text-accent lowercase ml-2" style={{ fontFamily: 'Times New Roman', fontWeight: 'normal', fontStyle: 'italic', fontSize: 'clamp(50px, 10vw, 96.5px)', textDecorationLine: 'none', textAlign: 'left', lineHeight: '1' }}>great</span><span className="text-accent">.</span>
           </motion.h2>
 
           <motion.p 
@@ -538,7 +538,7 @@ export default function App() {
         </div>
 
         {/* Right Half: Form */}
-        <div className="w-full md:w-1/2 md:pl-12">
+        <div className="w-full lg:w-1/2 lg:pl-12">
           <div className="flex flex-col gap-10">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
